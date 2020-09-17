@@ -4,68 +4,40 @@
 
 # 0.  From Problem Analysis to Data Definitions
 
-**Problem Analysis is the process of understanding the problem the software
-will address and to document in detail what the software system needs to do.
-In the real world this phase demands close interaction between developers and
-the client.  Ideally, end-users of the system are interviewed for their input.
+The program's broad purpose is to decode 'DuckieCode' data. The user will point 
+to the data that the program needs to decode by providing a relative file path.
+The data has all sorts of flags and indicators to help translate and decode. 
 
-In this course you will receive detailed requirements in the form of the
-assignment description.  I stand-in for the client and end-users when you have
-questions concerning their needs and desires.
+DuckieCorp has provided a nice dictionary to help translate between normal characters
+and DuckieCode. The output should be easily readable. The content I wrote from lsn 0-2
+like sorting 'dirty' from 'clean' and converting from ASCII to normal characters
+should help me immenseley.
 
-In this phase of the design process you should use [The Feynman
-Technique](https://www.youtube.com/watch?v=tkm0TNFzIeg) to ensure that you
-understand what is being asked of you. 
-
-The output of this phase of the development process is a restatement of the
-requirements in your own words.  Putting new problems into your own words will
-help you identify your "Known knowns" and your "known unknowns".
-
-As part of your restatement of the problem identify information that must be
-represented and decide how to represent in the chosen programming language.
-
-Formulate data definitions and illustrate them with examples.**
 
 
 # 1.  System Analysis
 
-**Analyze the flow of data throughout the program.  Does the program get input
-from the user?  If so, does it come from interactive prompts or from
-command-line arguments?  Is data incorporated from a file on the disk, from a
-database or from the internet?
-
-How is output given?  On the screen in the form of text or graphics?  Are
-output files created, and what form do they take?
-
-Identify the non-trivial formulas you need to create.  If there aren't any then
-state "no formulas" in this section.
-
-State what kind of data each desired function consumes and produces.  Formulate
-a concise descripiton of what the function computes.  Define a stub that lives
-up to the signature.**
+- The user is prompted to enter a "relative path" for which the program will decrypt.
+- We can expect normal **input** to include a combination of one of three flags (`^`, `_`, or `+`), 
+and then a number (1-32) representing a character
+- If a single combination is invalid (unexpected symbol/out of range number), 
+the data is passed over and the next combination is inspected
+- `^` represents uppercase, `_` reperesents a lowercase character, `+` represents a special character
+- The **output** consists of print statements that write the decrypted characters in order
 
 
 # 2.  Functional Examples
 
-**Design a process for obtaining the output from the input.  Consider both *good*
-and *bad* inputs.  Find or create examples of both kinds of input.
-
-Work out problem examples on paper, on a whiteboard or some other medium that
-is *not* your computer.  It is a mistake to begin writing executable code
-before you thoroughly understand what form the algorithm(s) must take.
-
-Instead, describe components of the system in *"pseudocode"*.  Expect to make
-lots of mistakes at this point.  You will find that it is much easier to throw
-away pseudocode than real code.  
-
-Manually work through several examples that illustrate the program's overall
-purpose, as well as the purpose of each component of the finished system.  You
-will converge on a correct solution much faster if you feel comfortable making
-mistakes as you go.
-
-This phase involves the use of many levels of abstraction to decompose the
-problem into manageable components, and design strategies for implementing each
-component.  Components may be functions, modules or classes.**
+**pseudocode**
+- Obtain input of relative file path
+- Read file content
+- For each element seperated by a space, keep track of initial flag, and then 
+read the following number
+- Find associative character from dictionary of number-character provided
+by DuckieCorp
+- Combine character and flag to produce incremental output
+- Repeat until no more bytes are provided from relative file path
+- Combine output in normal readable text and print
 
 
 # 3.  Function Template
@@ -74,6 +46,39 @@ component.  Components may be functions, modules or classes.**
 Comment out the pseudocode, leaving a valid program that compiles/runs without
 errors.  At this stage your program doesn't quite work, but it also doesn't
 crash.**
+
+```
+
+    ```
+    The user is prompted to enter a "relative path" for which the program will decrypt
+    ```
+    # Obtain input of relative file path
+    # Read file content
+
+    ```
+    If a single combination is invalid (unexpected symbol/out of range number), 
+    the data is passed over and the next combination is inspected
+    ```
+    # For each element seperated by a space, keep track of initial flag, and then 
+    read the following number
+    # Find associative character from dictionary of number-character provided
+    by DuckieCorp
+    # Character modify by flag type
+    # Add to arraylist
+    # Repeat until no more bytes are provided from relative file path
+
+
+    ```
+    The **output** consists of print statements that write the decrypted characters in order
+    ```
+    # Take output item by item from arraylist, combining into single string and printing
+
+
+
+
+
+```
+
 
 
 # 4.  Implementation
